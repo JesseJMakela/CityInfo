@@ -1,37 +1,72 @@
 package jes.mchill.cityinfo;
 
+import android.content.Context;
 import android.os.Bundle;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
-import jes.mchill.cityinfo.databinding.ActivityMainBinding;
+import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
+    private TextView txtPopulationData;
+    private TextView txtWeatherData;
+    private EditText editTextLocation;
 
-    private ActivityMainBinding binding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.navView, navController);
+        txtPopulationData = findViewById(R.id.txtPopulation);
+        txtWeatherData = findViewById(R.id.txtWeather);
+        editTextLocation = findViewById(R.id.txtEditLocation);
     }
 
+    public void onFindBtnClick(View view) {
+        Log.d("Lut", "Nappula toimii");
+        Context context = this;
+
+        MunicipalityDataRetriever mr = new MunicipalityDataRetriever();
+        WeatherDataRetriever  wr = new WeatherDataRetriever();
+
+        String location = editTextLocation.getText().toString();
+
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.execute(new Runnable() {
+            @Override
+            public void run() {
+                ArrayList<MunicipalityData> populationData = mr.getData(context, location);
+                WeatherData weatherData = wr.getWeatherData(location);
+                if(populationData == null) {
+                    return;
+                }
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String s ="";
+                        for(MunicipalityData data : populationData) {
+                            s += data.getYear() + " : " + data.getPopulation() + "\n";
+                        }
+                        txtPopulationData.setText(s);
+                    }
+                });
+
+                Log.d("Lut", "Data haettu");
+
+            }
+});
+
+
+
+
+    }
 }
