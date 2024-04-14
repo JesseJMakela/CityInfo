@@ -1,14 +1,28 @@
 package jes.mchill.cityinfo.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import jes.mchill.cityinfo.MunicipalityData;
+import jes.mchill.cityinfo.MunicipalityDataRetriever;
 import jes.mchill.cityinfo.R;
+import jes.mchill.cityinfo.WeatherData;
+import jes.mchill.cityinfo.WeatherDataRetriever;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +39,9 @@ public class FragmentA extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private TextView txtPopulationData;
+    private TextView txtWeatherData;
+    private EditText editTextLocation;
 
     public FragmentA() {
         // Required empty public constructor
@@ -51,16 +68,60 @@ public class FragmentA extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_a, container, false);
+        View view = inflater.inflate(R.layout.fragment_a, container, false);
+        editTextLocation = view.findViewById(R.id.txtEditLocation);
+        Button findBtn = view.findViewById(R.id.findBtn);
+        findBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onFindBtnClick(v);
+            }
+        });
+        return view;
+    }
+    public void onFindBtnClick(View view) {
+        Log.d("Lut", "Nappula toimii");
+        String location = editTextLocation.getText().toString();
+
+        MunicipalityDataRetriever mr = new MunicipalityDataRetriever();
+        WeatherDataRetriever wr = new WeatherDataRetriever();
+
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.execute(new Runnable() {
+            @Override
+            public void run() {
+                Context context = getContext();
+                ArrayList<MunicipalityData> populationData = mr.getData(context, location);
+                WeatherData weatherData = wr.getWeatherData(location);
+                if (populationData == null) {
+                    return;
+                }
+
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String s = "";
+                        for (MunicipalityData data : populationData) {
+                            s += data.getYear() + " : " + data.getPopulation() + "\n";
+                        }
+                        txtPopulationData.setText(s);
+                    }
+                });
+
+                Log.d("Lut", "Data haettu");
+
+            }
+        });
     }
 }

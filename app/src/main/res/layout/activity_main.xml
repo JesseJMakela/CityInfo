@@ -8,57 +8,6 @@
     tools:ignore="ExtraText">
 
 
-    <EditText
-        android:id="@+id/txtEditLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="136dp"
-        android:ems="10"
-        android:hint="Paikkakunta"
-        android:inputType="text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txtWeather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="139dp"
-        android:layout_marginEnd="212dp"
-        android:text="Säätiedot"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEditLocation"
-        app:layout_constraintVertical_bias="0.116" />
-
-    <TextView
-        android:id="@+id/txtPopulation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Väkiluku"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.416"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtWeather"
-        app:layout_constraintVertical_bias="0.06" />
-
-    <Button
-        android:id="@+id/findBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="136dp"
-        android:layout_marginEnd="24dp"
-        android:onClick="onFindBtnClick"
-        android:text="Hae"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.612"
-        app:layout_constraintStart_toEndOf="@+id/txtEditLocation"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/btnB"
         android:layout_width="wrap_content"
