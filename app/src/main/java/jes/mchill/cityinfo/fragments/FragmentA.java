@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import java.util.concurrent.Executors;
 import jes.mchill.cityinfo.MunicipalityData;
 import jes.mchill.cityinfo.MunicipalityDataRetriever;
 import jes.mchill.cityinfo.R;
+import jes.mchill.cityinfo.SharedViewModel;
 import jes.mchill.cityinfo.WeatherData;
 import jes.mchill.cityinfo.WeatherDataRetriever;
 
@@ -43,6 +45,7 @@ public class FragmentA extends Fragment {
     private TextView txtPopulationData;
     private TextView txtWeatherData;
     private EditText editTextLocation;
+    private SharedViewModel sharedViewModel;
 
     public FragmentA() {
         // Required empty public constructor
@@ -82,9 +85,11 @@ public class FragmentA extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_a, container, false);
         editTextLocation = view.findViewById(R.id.txtEditLocation);
-        txtPopulationData = view.findViewById(R.id.txtPopulation);
-        txtWeatherData = view.findViewById(R.id.txtWeather);
         Button findBtn = view.findViewById(R.id.findBtn);
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+
+
+
         findBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,8 +110,8 @@ public class FragmentA extends Fragment {
             @Override
             public void run() {
                 Context context = getContext();
-                ArrayList<MunicipalityData> populationData = mr.getData(context, location);
-                WeatherData weatherData = wr.getWeatherData(location);
+                final ArrayList<MunicipalityData> populationData = mr.getData(context, location);
+                final WeatherData weatherData = wr.getWeatherData(location);
 
                 if (getActivity() == null || getActivity().isFinishing())
                     return;
@@ -114,6 +119,8 @@ public class FragmentA extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        sharedViewModel.setPopulationData(populationData);
+                        sharedViewModel.setWeatherData(weatherData);
                         if (txtPopulationData != null) {
 
                             String s = "";

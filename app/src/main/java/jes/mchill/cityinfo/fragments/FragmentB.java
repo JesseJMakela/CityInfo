@@ -3,12 +3,19 @@ package jes.mchill.cityinfo.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.Locale;
 
 import jes.mchill.cityinfo.R;
+import jes.mchill.cityinfo.SharedViewModel;
+import jes.mchill.cityinfo.WeatherData;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +23,9 @@ import jes.mchill.cityinfo.R;
  * create an instance of this fragment.
  */
 public class FragmentB extends Fragment {
+
+    private SharedViewModel sharedViewModel;
+    private TextView weatherTextView;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -51,6 +61,7 @@ public class FragmentB extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -61,6 +72,26 @@ public class FragmentB extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_b, container, false);
+        View view = inflater.inflate(R.layout.fragment_b, container, false);
+        weatherTextView = view.findViewById(R.id.weatherTextView);
+
+        sharedViewModel.getWeatherData().observe(getViewLifecycleOwner(), new Observer<WeatherData>() {
+            @Override
+            public void onChanged(WeatherData weatherData) {
+                if (weatherData != null) {
+                    String weatherInfo = String.format(Locale.getDefault(),
+                            "Location: %s\nWeather: %s\nDescription: %s\nTemperature: %s\nWind Speed: %s",
+                            weatherData.getName(),
+                            weatherData.getMain(),
+                            weatherData.getDescription(),
+                            weatherData.getTemperature(),
+                            weatherData.getWindSpeed());
+                    weatherTextView.setText(weatherInfo);
+                }
+            }
+        });
+        return view;
     }
 }
+
+
