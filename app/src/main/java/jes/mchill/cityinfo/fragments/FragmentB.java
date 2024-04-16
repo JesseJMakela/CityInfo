@@ -79,14 +79,22 @@ public class FragmentB extends Fragment {
             @Override
             public void onChanged(WeatherData weatherData) {
                 if (weatherData != null) {
-                    String weatherInfo = String.format(Locale.getDefault(),
-                            "Location: %s\nWeather: %s\nDescription: %s\nTemperature: %s\nWind Speed: %s",
-                            weatherData.getName(),
-                            weatherData.getMain(),
-                            weatherData.getDescription(),
-                            weatherData.getTemperature(),
-                            weatherData.getWindSpeed());
-                    weatherTextView.setText(weatherInfo);
+                    double temperatureInCelsius = Double.parseDouble(weatherData.getTemperature()) - 273.15;
+
+                    TextView locationTextView = view.findViewById(R.id.locationTextView);
+                    locationTextView.setText("Location: " + weatherData.getName());
+
+                    TextView weatherTextView = view.findViewById(R.id.weatherTextView);
+                    weatherTextView.setText("Weather: " + weatherData.getMain());
+
+                    TextView descriptionTextView = view.findViewById(R.id.descriptionTextView);
+                    descriptionTextView.setText("Description: " + weatherData.getDescription());
+
+                    TextView temperatureTextView = view.findViewById(R.id.temperatureTextView);
+                    temperatureTextView.setText(String.format("Temperature: %.2f°C", temperatureInCelsius));
+
+                    TextView windSpeedTextView = view.findViewById(R.id.windSpeedTextView);
+                    windSpeedTextView.setText("Wind Speed: " + weatherData.getWindSpeed() + " m/s");
                 }
             }
         });

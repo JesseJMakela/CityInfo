@@ -11,7 +11,7 @@
         android:id="@+id/btnA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hae"
+        android:text="Search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnB"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,7 @@
         android:id="@+id/btnB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sää"
+        android:text="Weather"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnC"
         app:layout_constraintStart_toEndOf="@+id/btnA"
@@ -33,7 +33,7 @@
         android:id="@+id/btnC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tiedot"
+        android:text="Information"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnB"
@@ -57,23 +57,23 @@
                 android:layout_width="410dp"
                 android:layout_height="394dp"
                 app:srcCompat="@drawable/cityinfopic"
-                tools:layout_editor_absoluteX="-2dp"
-                tools:layout_editor_absoluteY="0dp" />
+                tools:layout_editor_absoluteX="-1dp"
+                tools:layout_editor_absoluteY="-9dp" />
 
             <TextView
                 android:id="@+id/tvWelcomeMessage"
-                android:layout_width="377dp"
-                android:layout_height="63dp"
-                android:layout_marginTop="1dp"
+                android:layout_width="306dp"
+                android:layout_height="65dp"
                 android:gravity="center"
-                android:text="Tervetuloa käyttämään CityInfo appia! Tällä apilla voit katsoa sään sekä perustietoa valitsemastasi kunnasta! Paina ensin 'Hae' näppäintä!"
+                android:text="Welcome to CityInfo! Discover the current weather and population data for cities around Finland. Search for a city to get started."
                 android:textColor="#000000"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.388"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.916" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
