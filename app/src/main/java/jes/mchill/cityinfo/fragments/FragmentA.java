@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -82,6 +83,7 @@ public class FragmentA extends Fragment {
         View view = inflater.inflate(R.layout.fragment_a, container, false);
         editTextLocation = view.findViewById(R.id.txtEditLocation);
         txtPopulationData = view.findViewById(R.id.txtPopulation);
+        txtWeatherData = view.findViewById(R.id.txtWeather);
         Button findBtn = view.findViewById(R.id.findBtn);
         findBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,6 +123,19 @@ public class FragmentA extends Fragment {
                         txtPopulationData.setText(s);
                     } else {
                         Log.e("FragmentA", "TextView txtPopulationData is null.");
+                    }
+
+                    if (txtWeatherData != null && weatherData != null) {
+                        String weatherInfo = String.format(Locale.getDefault(),
+                                "Location: %s\nWeather: %s\nDescription: %s\nTemperature: %s\nWind speed: %s",
+                                weatherData.getName(),
+                                weatherData.getMain(),
+                                weatherData.getDescription(),
+                                weatherData.getTemperature(),
+                                weatherData.getWindSpeed());
+                        txtWeatherData.setText(weatherInfo);
+                    } else {
+                        Log.e("FragmentA", "TextView txtWeatherData is null.");
                     }
                 Log.d("Lut", "Data haettu");
 
