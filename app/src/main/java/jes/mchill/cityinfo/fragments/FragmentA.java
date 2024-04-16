@@ -81,6 +81,7 @@ public class FragmentA extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_a, container, false);
         editTextLocation = view.findViewById(R.id.txtEditLocation);
+        txtPopulationData = view.findViewById(R.id.txtPopulation);
         Button findBtn = view.findViewById(R.id.findBtn);
         findBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,24 +105,27 @@ public class FragmentA extends Fragment {
                 Context context = getContext();
                 ArrayList<MunicipalityData> populationData = mr.getData(context, location);
                 WeatherData weatherData = wr.getWeatherData(location);
-                if (populationData == null) {
+
+                if (getActivity() == null || getActivity().isFinishing())
                     return;
-                }
 
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        String s = "";
-                        for (MunicipalityData data : populationData) {
-                            s += data.getYear() + " : " + data.getPopulation() + "\n";
+                        if (txtPopulationData != null) {
+
+                            String s = "";
+                            for (MunicipalityData data : populationData) {
+                                s += data.getYear() + " : " + data.getPopulation() + "\n";
                         }
                         txtPopulationData.setText(s);
+                    } else {
+                        Log.e("FragmentA", "TextView txtPopulationData is null.");
                     }
-                });
-
                 Log.d("Lut", "Data haettu");
 
             }
         });
     }
+}); }
 }

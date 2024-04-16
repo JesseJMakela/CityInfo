@@ -10,7 +10,7 @@ import java.net.URL;
 
 public class WeatherDataRetriever {
     private final String API_KEY = "029b0e00e32c53bc1d4dde8f426a0612";
-    private final String CONVERTER_BASE_URL = "https://api.openweathermap.org/geo/1.0/direct?q=%s&limit=%s&appid=%s";
+    private final String CONVERTER_BASE_URL = "https://api.openweathermap.org/geo/1.0/direct?q=%s&limit=5&appid=%s";
     private final String WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s&appid=%s";
 
     public WeatherData getWeatherData(String municipality) {
@@ -18,12 +18,18 @@ public class WeatherDataRetriever {
 
         JsonNode areas = null;
         try {
+            String converterUrl = String.format(CONVERTER_BASE_URL, municipality, 1, API_KEY);
             areas = objectMapper.readTree(new URL(String.format(CONVERTER_BASE_URL, municipality, API_KEY)));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
         Log.d("LUT", areas.toPrettyString());
+
+        if (areas.isEmpty() || areas.size() == 0) {
+            Log.e("WeatherDataRetriever", "No areas found for the given municipality");
+            return null;
+        }
 
         String latitude = areas.get(0).get("lat").toString();
         String longitude = areas.get(0).get("lon").toString();
@@ -37,6 +43,7 @@ public class WeatherDataRetriever {
         }
 
         Log.d("LUT", weatherData.toPrettyString());
+
 
         WeatherData wd = new WeatherData(
                 weatherData.get("name").asText(),
