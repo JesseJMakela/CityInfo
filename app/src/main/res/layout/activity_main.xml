@@ -43,26 +43,44 @@
     <FrameLayout
         android:id="@+id/frame"
         android:layout_width="409dp"
-        android:layout_height="646dp"
+        android:layout_height="731dp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="84dp">
+        tools:layout_editor_absoluteY="-1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="424dp">
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="410dp"
+                android:layout_height="394dp"
                 app:srcCompat="@drawable/cityinfopic"
-                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteX="-2dp"
                 tools:layout_editor_absoluteY="0dp" />
+
+            <TextView
+                android:id="@+id/tvWelcomeMessage"
+                android:layout_width="377dp"
+                android:layout_height="63dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:text="Tervetuloa käyttämään CityInfo appia! Tällä apilla voit katsoa sään sekä perustietoa valitsemastasi kunnasta! Paina ensin 'Hae' näppäintä!"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                app:layout_constraintVertical_bias="1.0" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 
