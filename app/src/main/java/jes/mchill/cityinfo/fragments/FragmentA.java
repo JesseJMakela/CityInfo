@@ -127,7 +127,7 @@ public class FragmentA extends Fragment {
 
                     if (txtWeatherData != null && weatherData != null) {
                         String weatherInfo = String.format(Locale.getDefault(),
-                                "Location: %s\nWeather: %s\nDescription: %s\nTemperature: %s\nWind speed: %s",
+                                "Location: %s\nWeather: %s\nDescription: %s\nTemperature: %s K\nWind speed: %s m/s",
                                 weatherData.getName(),
                                 weatherData.getMain(),
                                 weatherData.getDescription(),
