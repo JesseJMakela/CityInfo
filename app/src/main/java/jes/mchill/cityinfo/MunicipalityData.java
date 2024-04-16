@@ -5,9 +5,9 @@ public class MunicipalityData {
     private int year;
     private int population;
 
-    public MunicipalityData(int y, int p) {
-        year = y;
-        population = p;
+    public MunicipalityData(int year, int population) {
+        this.year = year;
+        this.population = population;
     }
 
 
@@ -18,9 +18,12 @@ public class MunicipalityData {
         this.year = year;
     }
     public int getPopulation() {
+
         return population;
     }
     public void setPopulation(int population) {
+
         this.population = population;
     }
+
 }
