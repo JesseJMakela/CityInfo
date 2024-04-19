@@ -14,6 +14,8 @@ public class SharedViewModel extends ViewModel {
 
     private MutableLiveData<ArrayList<PopulationData>> populationData = new MutableLiveData<>();
 
+    private MutableLiveData<ArrayList<EmploymentData>> employmentData = new MutableLiveData<>();
+
     // Setter methods
     public void setSelectedCity(String city) {
         selectedCity.setValue(city);
@@ -46,7 +48,18 @@ public class SharedViewModel extends ViewModel {
     public LiveData<ArrayList<PopulationData>> getPopulationData() {
         return populationData;
     }
+
+    public void setEmploymentData(ArrayList<EmploymentData> data) {
+        employmentData.setValue(data);
+    }
+
+    public LiveData<ArrayList<EmploymentData>> getEmploymentData() {
+        return employmentData;
+    }
 }
+
+
+
 
 
 

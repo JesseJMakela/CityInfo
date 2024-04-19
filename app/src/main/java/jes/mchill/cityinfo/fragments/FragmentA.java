@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import jes.mchill.cityinfo.EmploymentData;
+import jes.mchill.cityinfo.EmploymentDataRetriever;
 import jes.mchill.cityinfo.PopulationData;
 import jes.mchill.cityinfo.PopulationDataRetriever;
 import jes.mchill.cityinfo.SelfsufficiencyData;
@@ -87,6 +89,7 @@ public class FragmentA extends Fragment {
         SelfsufficiencyDataRetriever mr = new SelfsufficiencyDataRetriever();
         WeatherDataRetriever wr = new WeatherDataRetriever();
         PopulationDataRetriever pr = new PopulationDataRetriever();
+        EmploymentDataRetriever er = new EmploymentDataRetriever();
 
         ExecutorService service = Executors.newSingleThreadExecutor();
         service.execute(new Runnable() {
@@ -96,6 +99,7 @@ public class FragmentA extends Fragment {
                 final ArrayList<SelfsufficiencyData> selfsufficiencyData = mr.getData(context, location);
                 final WeatherData weatherData = wr.getWeatherData(location);
                 final ArrayList<PopulationData> populationData = pr.getData(context, location);
+                final ArrayList<EmploymentData> employmentData = er.getData(context, location);
 
                 if (getActivity() == null || getActivity().isFinishing())
                     return;
@@ -106,9 +110,10 @@ public class FragmentA extends Fragment {
                         sharedViewModel.setSelfSufficiencyData(selfsufficiencyData);
                         sharedViewModel.setWeatherData(weatherData);
                         sharedViewModel.setPopulationData(populationData);
+                        sharedViewModel.setEmploymentData(employmentData);
 
                         // Check if the search is successful
-                        if (selfsufficiencyData != null || weatherData != null || populationData != null) {
+                        if (selfsufficiencyData != null || weatherData != null || populationData != null || employmentData != null) {
                             // Display a Toast message
                             Toast.makeText(context, "Search successful!", Toast.LENGTH_SHORT).show();
                         } else {

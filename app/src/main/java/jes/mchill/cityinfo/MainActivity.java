@@ -12,6 +12,7 @@ import jes.mchill.cityinfo.fragments.FragmentA;
 import jes.mchill.cityinfo.fragments.FragmentB;
 import jes.mchill.cityinfo.fragments.FragmentC;
 import jes.mchill.cityinfo.fragments.FragmentD;
+import jes.mchill.cityinfo.fragments.FragmentE;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,11 +27,13 @@ public class MainActivity extends AppCompatActivity {
         Button fragmentB = findViewById(R.id.btnB);
         Button fragmentC = findViewById(R.id.btnC);
         Button fragmentD = findViewById(R.id.btnD);
+        Button fragmentE = findViewById(R.id.btnE);
 
         fragmentA.setOnClickListener(listener);
         fragmentB.setOnClickListener(listener);
         fragmentC.setOnClickListener(listener);
         fragmentD.setOnClickListener(listener);
+        fragmentE.setOnClickListener(listener);
 
 
     }
@@ -48,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new FragmentC();
             } else if (view.getId() == R.id.btnD) {
                 fragment = new FragmentD();
+            } else if (view.getId() == R.id.btnE) {
+                fragment = new FragmentE();
             } else {
                 fragment = new FragmentA();
             }

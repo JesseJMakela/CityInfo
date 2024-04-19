@@ -110,9 +110,7 @@ public class PopulationDataRetriever {
             for(int i = 0; i < years.size(); i++) {
                 populationData.add(new PopulationData(Integer.valueOf(years.get(i)), Integer.valueOf(populations.get(i))));
             }
-            PopulationData lastData = populationData.get(populationData.size() - 1);
 
-            Log.d(TAG, "Processed data - Year: " + lastData.getYear() + ", Population: " + lastData.getPopulation());
 
 
             return populationData;

@@ -94,25 +94,25 @@ public class SelfsufficiencyDataRetriever {
             JsonNode municipalityData = objectMapper.readTree(response.toString());
 
             ArrayList<String> years = new ArrayList<>();
-            ArrayList<String> populations = new ArrayList<>();
+            ArrayList<String> selfsufficies = new ArrayList<>();
 
             for (JsonNode node : municipalityData.get("dimension").get("Vuosi").get("category").get("label")) {
                 years.add(node.asText());
             }
 
             for (JsonNode node : municipalityData.get("value")) {
-                populations.add(node.asText());
+                selfsufficies.add(node.asText());
             }
 
-            ArrayList<SelfsufficiencyData> populationData = new ArrayList<>();
+            ArrayList<SelfsufficiencyData> selfsufficiencyData = new ArrayList<>();
 
             for(int i = 0; i < years.size(); i++) {
-                populationData.add(new SelfsufficiencyData(Integer.valueOf(years.get(i)), Float.parseFloat(populations.get(i))));
+                selfsufficiencyData.add(new SelfsufficiencyData(Integer.valueOf(years.get(i)), Float.parseFloat(selfsufficies.get(i))));
             }
             Log.d(TAG, "Data processed successfully.");
 
 
-            return populationData;
+            return selfsufficiencyData;
 
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
