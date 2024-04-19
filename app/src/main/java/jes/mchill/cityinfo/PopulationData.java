@@ -1,11 +1,11 @@
 package jes.mchill.cityinfo;
 
-public class MunicipalityData {
+public class PopulationData {
 
     private int year;
     private int population;
 
-    public MunicipalityData(int year, int population) {
+    public PopulationData(int year, int population) {
         this.year = year;
         this.population = population;
     }

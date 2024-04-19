@@ -1,13 +1,13 @@
 package jes.mchill.cityinfo;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -17,15 +17,18 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MunicipalityDataRetriever {
+public class SelfsufficiencyDataRetriever {
 
-    public ArrayList<MunicipalityData> getData(Context context, String municipality) {
+    private static final String TAG = "SelfsufficiencyData";
+
+
+    public ArrayList<SelfsufficiencyData> getData(Context context, String municipality) {
         ObjectMapper objectMapper = new ObjectMapper();
 
         JsonNode areas = null;
 
         try {
-            areas = objectMapper.readTree(new URL("https://statfin.stat.fi/PxWeb/api/v1/en/StatFin/synt/statfin_synt_pxt_12dy.px"));
+            areas = objectMapper.readTree(new URL("https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/tyokay/statfin_tyokay_pxt_125s.px"));
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -57,10 +60,12 @@ public class MunicipalityDataRetriever {
 
         code = null;
         code = municipalityCodes.get(municipality);
+        Log.d(TAG, "Municipality code retrieved: " + code);
+
 
 
         try {
-            URL url = new URL("https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/synt/statfin_synt_pxt_12dy.px");
+            URL url = new URL("https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/tyokay/statfin_tyokay_pxt_125s.px");
 
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("POST");
@@ -68,13 +73,15 @@ public class MunicipalityDataRetriever {
             con.setRequestProperty("Accept", "application/json");
             con.setDoOutput(true);
 
-            JsonNode jsonInputString = objectMapper.readTree(context.getResources().openRawResource(R.raw.query));
+            JsonNode jsonInputString = objectMapper.readTree(context.getResources().openRawResource(R.raw.query2));
 
             ((ObjectNode) jsonInputString.get("query").get(0).get("selection")).putArray("values").add(code);
 
             byte[] input = objectMapper.writeValueAsBytes(jsonInputString);
             OutputStream os = con.getOutputStream();
             os.write(input, 0, input.length);
+            Log.i(TAG, "Posted data to server.");
+
 
 
             BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
@@ -97,11 +104,13 @@ public class MunicipalityDataRetriever {
                 populations.add(node.asText());
             }
 
-            ArrayList<MunicipalityData> populationData = new ArrayList<>();
+            ArrayList<SelfsufficiencyData> populationData = new ArrayList<>();
 
             for(int i = 0; i < years.size(); i++) {
-                populationData.add(new MunicipalityData(Integer.valueOf(years.get(i)), Integer.valueOf(populations.get(i))));
+                populationData.add(new SelfsufficiencyData(Integer.valueOf(years.get(i)), Float.parseFloat(populations.get(i))));
             }
+            Log.d(TAG, "Data processed successfully.");
+
 
             return populationData;
 

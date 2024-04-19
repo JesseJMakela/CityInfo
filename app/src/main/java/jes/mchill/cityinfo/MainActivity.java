@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import jes.mchill.cityinfo.fragments.FragmentA;
 import jes.mchill.cityinfo.fragments.FragmentB;
 import jes.mchill.cityinfo.fragments.FragmentC;
+import jes.mchill.cityinfo.fragments.FragmentD;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,10 +25,12 @@ public class MainActivity extends AppCompatActivity {
         Button fragmentA = findViewById(R.id.btnA);
         Button fragmentB = findViewById(R.id.btnB);
         Button fragmentC = findViewById(R.id.btnC);
+        Button fragmentD = findViewById(R.id.btnD);
 
         fragmentA.setOnClickListener(listener);
         fragmentB.setOnClickListener(listener);
         fragmentC.setOnClickListener(listener);
+        fragmentD.setOnClickListener(listener);
 
 
     }
@@ -43,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new FragmentB();
             } else if (view.getId() == R.id.btnC) {
                 fragment = new FragmentC();
+            } else if (view.getId() == R.id.btnD) {
+                fragment = new FragmentD();
             } else {
                 fragment = new FragmentA();
             }

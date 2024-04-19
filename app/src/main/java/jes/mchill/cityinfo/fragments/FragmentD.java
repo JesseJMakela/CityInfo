@@ -13,12 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import jes.mchill.cityinfo.SelfsufficiencyData;
+import jes.mchill.cityinfo.PopulationData;
 import jes.mchill.cityinfo.R;
 import jes.mchill.cityinfo.SharedViewModel;
 import jes.mchill.cityinfo.MyGenericAdapter;
 
-public class FragmentC extends Fragment {
+public class FragmentD extends Fragment {
 
     private SharedViewModel sharedViewModel;
     private RecyclerView recyclerView;
@@ -33,17 +33,17 @@ public class FragmentC extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_c, container, false);
+        View view = inflater.inflate(R.layout.fragment_d, container, false);
 
-        recyclerView = view.findViewById(R.id.recyclerview);
+        recyclerView = view.findViewById(R.id.recyclerview2);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
         adapter = new MyGenericAdapter(requireContext(), new ArrayList<>());
         recyclerView.setAdapter(adapter);
 
-        sharedViewModel.getSelfSufficiencyData().observe(getViewLifecycleOwner(), new Observer<ArrayList<SelfsufficiencyData>>() {
+        sharedViewModel.getPopulationData().observe(getViewLifecycleOwner(), new Observer<ArrayList<PopulationData>>() {
             @Override
-            public void onChanged(ArrayList<SelfsufficiencyData> populationData) {
+            public void onChanged(ArrayList<PopulationData> populationData) {
                 if (populationData != null) {
                     adapter.setItems(populationData);
                 }
@@ -53,4 +53,3 @@ public class FragmentC extends Fragment {
         return view;
     }
 }
-

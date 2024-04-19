@@ -3,7 +3,6 @@ package jes.mchill.cityinfo.fragments;
 import android.content.Context;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -17,12 +16,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import jes.mchill.cityinfo.MunicipalityData;
-import jes.mchill.cityinfo.MunicipalityDataRetriever;
+import jes.mchill.cityinfo.PopulationData;
+import jes.mchill.cityinfo.PopulationDataRetriever;
+import jes.mchill.cityinfo.SelfsufficiencyData;
+import jes.mchill.cityinfo.SelfsufficiencyDataRetriever;
 import jes.mchill.cityinfo.R;
 import jes.mchill.cityinfo.SharedViewModel;
 import jes.mchill.cityinfo.WeatherData;
@@ -84,16 +84,18 @@ public class FragmentA extends Fragment {
         Log.d("Lut", "Nappula toimii");
         String location = editTextLocation.getText().toString();
 
-        MunicipalityDataRetriever mr = new MunicipalityDataRetriever();
+        SelfsufficiencyDataRetriever mr = new SelfsufficiencyDataRetriever();
         WeatherDataRetriever wr = new WeatherDataRetriever();
+        PopulationDataRetriever pr = new PopulationDataRetriever();
 
         ExecutorService service = Executors.newSingleThreadExecutor();
         service.execute(new Runnable() {
             @Override
             public void run() {
                 Context context = getContext();
-                final ArrayList<MunicipalityData> populationData = mr.getData(context, location);
+                final ArrayList<SelfsufficiencyData> selfsufficiencyData = mr.getData(context, location);
                 final WeatherData weatherData = wr.getWeatherData(location);
+                final ArrayList<PopulationData> populationData = pr.getData(context, location);
 
                 if (getActivity() == null || getActivity().isFinishing())
                     return;
@@ -101,11 +103,12 @@ public class FragmentA extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        sharedViewModel.setPopulationData(populationData);
+                        sharedViewModel.setSelfSufficiencyData(selfsufficiencyData);
                         sharedViewModel.setWeatherData(weatherData);
+                        sharedViewModel.setPopulationData(populationData);
 
                         // Check if the search is successful
-                        if (populationData != null || weatherData != null) {
+                        if (selfsufficiencyData != null || weatherData != null || populationData != null) {
                             // Display a Toast message
                             Toast.makeText(context, "Search successful!", Toast.LENGTH_SHORT).show();
                         } else {

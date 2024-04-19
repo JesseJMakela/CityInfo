@@ -4,14 +4,15 @@ import androidx.lifecycle.ViewModel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 
 public class SharedViewModel extends ViewModel {
     private MutableLiveData<String> selectedCity = new MutableLiveData<>();
     private MutableLiveData<WeatherData> weatherData = new MutableLiveData<>();
-    private MutableLiveData<ArrayList<MunicipalityData>> populationData = new MutableLiveData<>();
+    private MutableLiveData<ArrayList<SelfsufficiencyData>> selfSufficiencyData = new MutableLiveData<>();
+
+    private MutableLiveData<ArrayList<PopulationData>> populationData = new MutableLiveData<>();
 
     // Setter methods
     public void setSelectedCity(String city) {
@@ -22,8 +23,8 @@ public class SharedViewModel extends ViewModel {
         weatherData.setValue(data);
     }
 
-    public void setPopulationData(ArrayList<MunicipalityData> data) {
-        populationData.setValue(data);
+    public void setSelfSufficiencyData(ArrayList<SelfsufficiencyData> data) {
+        selfSufficiencyData.setValue(data);
     }
 
     // Getter methods
@@ -35,8 +36,17 @@ public class SharedViewModel extends ViewModel {
         return weatherData;
     }
 
-    public LiveData<ArrayList<MunicipalityData>> getPopulationData() {
+    public LiveData<ArrayList<SelfsufficiencyData>> getSelfSufficiencyData() {
+        return selfSufficiencyData;
+    }
+
+    public void setPopulationData(ArrayList<PopulationData> data) {
+        populationData.setValue(data);
+    }
+    public LiveData<ArrayList<PopulationData>> getPopulationData() {
         return populationData;
     }
 }
+
+
 
