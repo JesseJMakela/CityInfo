@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -80,6 +81,24 @@ public class FragmentB extends Fragment {
             public void onChanged(WeatherData weatherData) {
                 if (weatherData != null) {
                     double temperatureInCelsius = Double.parseDouble(weatherData.getTemperature()) - 273.15;
+
+                    ImageView weatherImageView = view.findViewById(R.id.weatherImageView);
+                    if (weatherData.getMain().toLowerCase(Locale.ROOT).contains("rain")) {
+                        weatherImageView.setImageResource(R.drawable.rain);
+                    } else if (weatherData.getMain().toLowerCase(Locale.ROOT).contains("cloud")) {
+                        weatherImageView.setImageResource(R.drawable.clouds);
+                    } else if (weatherData.getMain().toLowerCase(Locale.ROOT).contains("clear")) {
+                        weatherImageView.setImageResource(R.drawable.clear_sky);
+                    } else if (weatherData.getMain().toLowerCase(Locale.ROOT).contains("sunny")) {
+                        weatherImageView.setImageResource(R.drawable.sunny);
+                    } else if (weatherData.getMain().toLowerCase(Locale.ROOT).contains("snow")) {
+                        weatherImageView.setImageResource(R.drawable.snow);
+                    } else if (weatherData.getMain().toLowerCase(Locale.ROOT).contains("storm")) {
+                        weatherImageView.setImageResource(R.drawable.thunderstorm);
+                    }
+                    else {
+                        weatherImageView.setImageResource(R.drawable.clear_sky);
+                    }
 
                     TextView locationTextView = view.findViewById(R.id.locationTextView);
                     locationTextView.setText("Location: " + weatherData.getName());

@@ -1,6 +1,7 @@
 package jes.mchill.cityinfo;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,14 +17,17 @@ public class MyGenericViewHolder<T> extends RecyclerView.ViewHolder {
     }
 
     public void bind(T item) {
+        ImageView imagePlacement = itemView.findViewById(R.id.imgLogo);
         if (item instanceof SelfsufficiencyData) {
             SelfsufficiencyData data = (SelfsufficiencyData) item;
             placement1.setText(String.valueOf("Year: " + data.getYear()));
-            placement2.setText(String.valueOf("Workplace self-sufficiency: " + data.getWorkplaceSelfSufficiency()));
+            placement2.setText(String.valueOf("Workplace self-sufficiency: " + data.getWorkplaceSelfSufficiency()) + "%");
+            imagePlacement.setImageResource(R.drawable.workplace);
         } else if (item instanceof PopulationData) {
             PopulationData data = (PopulationData) item;
             placement1.setText(String.valueOf("Year: " + data.getPopulationYear()));
             placement2.setText(String.valueOf("Population: " + data.getPopulation()));
+            imagePlacement.setImageResource(R.drawable.people);
         } else if (item instanceof EmploymentData) {
             EmploymentData data = (EmploymentData) item;
             placement1.setText(String.valueOf("Year: " + data.getEmployementYear()));

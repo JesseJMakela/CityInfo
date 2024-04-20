@@ -10,7 +10,8 @@
         android:id="@+id/recyclerview3"
         android:layout_width="match_parent"
         android:background="#ffcc88"
-        android:layout_height="645dp">
+        android:layout_height="645dp"
+        >
 
     </androidx.recyclerview.widget.RecyclerView>
 

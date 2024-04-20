@@ -9,7 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="645dp"
+        android:layout_height="match_parent"
         android:background="#ffffcc">
 
         <Button
@@ -20,24 +20,34 @@
             android:text="Search"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.458"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtEditLocation"
-            app:layout_constraintVertical_bias="0.158" />
+            app:layout_constraintVertical_bias="0.142" />
 
         <EditText
             android:id="@+id/txtEditLocation"
-            android:layout_width="322dp"
-            android:layout_height="124dp"
+            android:layout_width="354dp"
+            android:layout_height="64dp"
             android:ems="10"
+            android:gravity="center"
             android:hint="Enter Location"
             android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintHorizontal_bias="0.485"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.286" />
+            app:layout_constraintVertical_bias="0.33" />
+
+        <TextView
+            android:id="@+id/infotxt"
+            android:layout_width="345dp"
+            android:layout_height="76dp"
+            android:text="Make sure to capitalize the first letter to ensure accurate search results!"
+            app:layout_constraintBottom_toTopOf="@+id/txtEditLocation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
