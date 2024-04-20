@@ -11,7 +11,7 @@ public class PopulationData {
     }
 
 
-    public int getYear() {
+    public int getPopulationYear() {
         return year;
     }
     public void setYear(int year) {

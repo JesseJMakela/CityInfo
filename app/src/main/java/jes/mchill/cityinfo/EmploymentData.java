@@ -25,5 +25,11 @@ public class EmploymentData {
 
         this.employmentRate = employmentRate;
     }
-
+    public float getEmployementRate() {
+        return employmentRate;
+    }
+    public int getEmployementYear() {
+        return year;
+    }
 }
+

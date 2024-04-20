@@ -70,11 +70,11 @@
         android:layout_height="731dp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="-124dp">
+        tools:layout_editor_absoluteY="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="424dp">
+            android:layout_height="597dp">
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -82,22 +82,23 @@
                 android:layout_height="394dp"
                 app:srcCompat="@drawable/cityinfopic"
                 tools:layout_editor_absoluteX="-1dp"
-                tools:layout_editor_absoluteY="-9dp" />
+                tools:layout_editor_absoluteY="-2dp" />
 
             <TextView
                 android:id="@+id/tvWelcomeMessage"
-                android:layout_width="306dp"
-                android:layout_height="65dp"
+                android:layout_width="394dp"
+                android:layout_height="155dp"
+                android:fontFamily="@font/autobus"
                 android:gravity="center"
                 android:text="Welcome to CityInfo! Discover the current weather and population data for cities around Finland. Search for a city to get started."
                 android:textColor="#000000"
-                android:textSize="14sp"
+                android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.388"
+                app:layout_constraintHorizontal_bias="0.466"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.916" />
+                app:layout_constraintVertical_bias="0.846" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

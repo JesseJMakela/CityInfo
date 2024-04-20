@@ -7,23 +7,28 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 public class MyGenericViewHolder<T> extends RecyclerView.ViewHolder {
 
-    private TextView year, value;
+    private TextView placement1, placement2;
 
     public MyGenericViewHolder(@NonNull View itemView) {
         super(itemView);
-        year = itemView.findViewById(R.id.txtYear);
-        value = itemView.findViewById(R.id.txtValue);
+        placement1 = itemView.findViewById(R.id.txtYear);
+        placement2 = itemView.findViewById(R.id.txtValue);
     }
 
     public void bind(T item) {
         if (item instanceof SelfsufficiencyData) {
             SelfsufficiencyData data = (SelfsufficiencyData) item;
-            year.setText(String.valueOf(data.getYear()));
-            value.setText(String.valueOf(data.getWorkplaceSelfSufficiency()));
+            placement1.setText(String.valueOf("Year: " + data.getYear()));
+            placement2.setText(String.valueOf("Workplace self-sufficiency: " + data.getWorkplaceSelfSufficiency()));
         } else if (item instanceof PopulationData) {
             PopulationData data = (PopulationData) item;
-            year.setText(String.valueOf(data.getYear()));
-            value.setText(String.valueOf(data.getPopulation()));
+            placement1.setText(String.valueOf("Year: " + data.getPopulationYear()));
+            placement2.setText(String.valueOf("Population: " + data.getPopulation()));
+        } else if (item instanceof EmploymentData) {
+            EmploymentData data = (EmploymentData) item;
+            placement1.setText(String.valueOf("Year: " + data.getEmployementYear()));
+            placement2.setText(String.valueOf("Employment: " + data.getEmployementRate()));
         }
+
     }
 }
