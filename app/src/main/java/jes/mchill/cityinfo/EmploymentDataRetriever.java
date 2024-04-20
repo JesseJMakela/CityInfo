@@ -63,11 +63,14 @@ public class EmploymentDataRetriever {
         Log.d(TAG, "Municipality code retrieved: " + code);
 
         try {
+
+
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("POST");
             con.setRequestProperty("Content-Type", "application/json; utf-8");
             con.setRequestProperty("Accept", "application/json");
             con.setDoOutput(true);
+
 
             JsonNode jsonInputString = objectMapper.readTree(context.getResources().openRawResource(R.raw.query3));
             ((ObjectNode) jsonInputString.get("query").get(0).get("selection")).putArray("values").add(code);

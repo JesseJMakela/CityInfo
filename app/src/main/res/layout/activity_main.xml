@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
     android:background="#c5dbec"
     tools:context=".MainActivity">
 
@@ -92,12 +93,13 @@
                 android:layout_height="155dp"
                 android:fontFamily="@font/autobus"
                 android:gravity="center"
-                android:text="Welcome to CityInfo! Discover the current weather and population data for cities around Finland. Search for a city to get started."
+                android:text="Welcome to CityInfo! Discover the current weather and population data for cities around Finland.
+                Search for a city to get started!"
                 android:textColor="#000000"
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.428"
+                app:layout_constraintHorizontal_bias="0.466"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.96" />

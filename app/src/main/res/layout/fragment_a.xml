@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffffcc">
+        android:background="#c5dbec">
 
         <Button
             android:id="@+id/findBtn"
@@ -32,6 +32,9 @@
             android:gravity="center"
             android:hint="Enter Location"
             android:inputType="text"
+            android:textColor="#000000"
+            android:textColorHighlight="#000000"
+            android:textColorHint="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.485"
@@ -41,9 +44,10 @@
 
         <TextView
             android:id="@+id/infotxt"
+            android:textColor="@color/black"
             android:layout_width="345dp"
             android:layout_height="76dp"
-            android:text="Make sure to capitalize the first letter to ensure accurate search results!"
+            android:text="Make sure to capitalize the first letter and not to have any unnecessary marks or spaces to ensure accurate search results!"
             app:layout_constraintBottom_toTopOf="@+id/txtEditLocation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
