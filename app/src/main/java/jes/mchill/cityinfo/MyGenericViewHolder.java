@@ -20,18 +20,19 @@ public class MyGenericViewHolder<T> extends RecyclerView.ViewHolder {
         ImageView imagePlacement = itemView.findViewById(R.id.imgLogo);
         if (item instanceof SelfsufficiencyData) {
             SelfsufficiencyData data = (SelfsufficiencyData) item;
-            placement1.setText(String.valueOf("Year: " + data.getYear()));
-            placement2.setText(String.valueOf("Workplace self-sufficiency: " + data.getWorkplaceSelfSufficiency()) + "%");
+            placement1.setText("Year: " + data.getYear());
+            placement2.setText("Workplace self-sufficiency: " + data.getWorkplaceSelfSufficiency() + "%");
             imagePlacement.setImageResource(R.drawable.workplace);
         } else if (item instanceof PopulationData) {
             PopulationData data = (PopulationData) item;
-            placement1.setText(String.valueOf("Year: " + data.getPopulationYear()));
-            placement2.setText(String.valueOf("Population: " + data.getPopulation()));
+            placement1.setText("Year: " + data.getPopulationYear());
+            placement2.setText("Population: " + data.getPopulation());
             imagePlacement.setImageResource(R.drawable.people);
         } else if (item instanceof EmploymentData) {
             EmploymentData data = (EmploymentData) item;
-            placement1.setText(String.valueOf("Year: " + data.getEmploymentYear()));
-            placement2.setText(String.valueOf("Employment: " + data.getEmploymentRate()));
+            placement1.setText("Year: " + data.getEmploymentYear());
+            placement2.setText("Employment rate: " + Math.round(data.getEmploymentRate())+"%");
+            imagePlacement.setImageResource(R.drawable.businessman);
         }
 
     }
