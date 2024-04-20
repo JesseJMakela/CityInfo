@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import jes.mchill.cityinfo.EmploymentData;
-import jes.mchill.cityinfo.PopulationData;
 import jes.mchill.cityinfo.R;
 import jes.mchill.cityinfo.SharedViewModel;
 import jes.mchill.cityinfo.MyGenericAdapter;

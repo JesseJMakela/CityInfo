@@ -28,7 +28,9 @@ public class SelfsufficiencyDataRetriever {
         JsonNode areas = null;
 
         try {
-            areas = objectMapper.readTree(new URL("https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/tyokay/statfin_tyokay_pxt_125s.px"));
+            areas = objectMapper.readTree(new URL("https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/tyokay/statfin_tyokay_pxt_125s.px")); //https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/tyokay/statfin_tyokay_pxt_125s.px
+            Log.d(TAG, "Areas data: " + areas.toPrettyString());
+
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -41,6 +43,9 @@ public class SelfsufficiencyDataRetriever {
 
         ArrayList<String> keys = new ArrayList<>();
         ArrayList<String> values = new ArrayList<>();
+
+        Log.d(TAG, "Keys: " + keys.toString());
+        Log.d(TAG, "Values: " + values.toString());
 
         for (JsonNode node : areas.get("variables").get(1).get("values")) {
             values.add(node.asText());
@@ -55,12 +60,18 @@ public class SelfsufficiencyDataRetriever {
             municipalityCodes.put(keys.get(i), values.get(i));
         }
 
+        Log.d(TAG, "Municipality codes: " + municipalityCodes.toString());
+
+
         String code = null;
 
 
         code = null;
         code = municipalityCodes.get(municipality);
         Log.d(TAG, "Municipality code retrieved: " + code);
+
+        Log.d(TAG, "Data code retrieved: " + code);
+
 
 
 

@@ -3,33 +3,44 @@ package jes.mchill.cityinfo;
 public class EmploymentData {
 
     private int year;
-    private float employmentRate;
+    private double employmentRate;
+    private String municipalityCode;
 
-    public EmploymentData(int year, float employmentRate) {
+    // No-argument constructor
+    public EmploymentData() {
+        // Initialize with default values if necessary
+    }
+
+    // Constructor with arguments
+    public EmploymentData(int year, double employmentRate) {
         this.year = year;
         this.employmentRate = employmentRate;
     }
 
-
-    public int getYear() {
+    // Getters and setters for year
+    public int getEmploymentYear() {
         return year;
     }
-    public void setYear(int year) {
+
+    public void setEmploymentYear(int year) {
         this.year = year;
     }
-    public float getEmploymentRate() {
 
+    // Getters and setters for employment rate
+    public double getEmploymentRate() {
         return employmentRate;
     }
-    public void setEmploymentRate(float employmentRate) {
 
+    public void setEmploymentRate(double employmentRate) {
         this.employmentRate = employmentRate;
     }
-    public float getEmployementRate() {
-        return employmentRate;
+
+    // Getters and setters for municipality code
+    public String getMunicipalityCode() {
+        return municipalityCode;
     }
-    public int getEmployementYear() {
-        return year;
+
+    public void setMunicipalityCode(String municipalityCode) {
+        this.municipalityCode = municipalityCode;
     }
 }
-

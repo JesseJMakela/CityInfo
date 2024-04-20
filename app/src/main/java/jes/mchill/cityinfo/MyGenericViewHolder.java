@@ -30,8 +30,8 @@ public class MyGenericViewHolder<T> extends RecyclerView.ViewHolder {
             imagePlacement.setImageResource(R.drawable.people);
         } else if (item instanceof EmploymentData) {
             EmploymentData data = (EmploymentData) item;
-            placement1.setText(String.valueOf("Year: " + data.getEmployementYear()));
-            placement2.setText(String.valueOf("Employment: " + data.getEmployementRate()));
+            placement1.setText(String.valueOf("Year: " + data.getEmploymentYear()));
+            placement2.setText(String.valueOf("Employment: " + data.getEmploymentRate()));
         }
 
     }
