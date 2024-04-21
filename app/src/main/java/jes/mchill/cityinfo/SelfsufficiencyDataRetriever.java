@@ -32,14 +32,14 @@ public class SelfsufficiencyDataRetriever {
             Log.d(TAG, "Areas data: " + areas.toPrettyString());
 
         } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
         }
 
-        //System.out.println(areas.toPrettyString());
+
 
         ArrayList<String> keys = new ArrayList<>();
         ArrayList<String> values = new ArrayList<>();
@@ -126,10 +126,8 @@ public class SelfsufficiencyDataRetriever {
             return selfsufficiencyData;
 
         } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
