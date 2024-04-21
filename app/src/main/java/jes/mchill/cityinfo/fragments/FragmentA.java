@@ -37,14 +37,8 @@ public class FragmentA extends Fragment {
 
     private String mParam1;
     private String mParam2;
-    private TextView txtPopulationData;
-    private TextView txtWeatherData;
     private EditText editTextLocation;
     private SharedViewModel sharedViewModel;
-
-    public FragmentA() {
-        // Required empty public constructor
-    }
 
     public static FragmentA newInstance(String param1, String param2) {
         FragmentA fragment = new FragmentA();
@@ -79,6 +73,7 @@ public class FragmentA extends Fragment {
                 onFindBtnClick(v);
             }
         });
+
         return view;
     }
 
